@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorpresa</title>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(to top, #1e3c72, #2a5298, #87ceeb);
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  position:relative;
+}
+
+/* Nubes */
+.cloud{
+  position:absolute;
+  background:white;
+  border-radius:50px;
+  opacity:.8;
+  animation:moveClouds linear infinite;
+}
+
+.cloud:before,
+.cloud:after{
+  content:'';
+  position:absolute;
+  background:white;
+  border-radius:50%;
+}
+
+.cloud:before{
+  width:50px;
+  height:50px;
+  top:-25px;
+  left:10px;
+}
+
+.cloud:after{
+  width:70px;
+  height:70px;
+  top:-35px;
+  right:10px;
+}
+
+.cloud.c1{
+  width:120px;
+  height:40px;
+  top:20%;
+  left:-150px;
+  animation-duration:40s;
+}
+
+.cloud.c2{
+  width:160px;
+  height:50px;
+  top:40%;
+  left:-200px;
+  animation-duration:60s;
+}
+
+.cloud.c3{
+  width:100px;
+  height:35px;
+  top:65%;
+  left:-120px;
+  animation-duration:50s;
+}
+
+@keyframes moveClouds{
+  from{transform:translateX(0)}
+  to{transform:translateX(120vw)}
+}
+
+/* Suelo */
+.ground{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:120px;
+  background:linear-gradient(#2ecc71,#27ae60);
+}
+
+/* Mensaje */
+.message{
+  position:absolute;
+  top:12%;
+  width:100%;
+  text-align:center;
+  color:white;
+  font-size:24px;
+  padding:20px;
+  text-shadow:0 2px 10px rgba(0,0,0,.4);
+  animation:fadeIn 3s ease;
+  z-index:5;
+}
+
+.sub{
+  margin-top:10px;
+  font-size:16px;
+  opacity:.95;
+  animation:floatText 4s ease-in-out infinite;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(-20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes floatText{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
+
+/* Botón música */
+.music-btn{
+  position:absolute;
+  top:28%;
+  left:50%;
+  transform:translateX(-50%);
+  padding:14px 28px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(135deg,#ff4fa3,#ff85c1);
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+  transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+  z-index:10;
+}
+
+.music-btn:hover{
+  transform:translateX(-50%) scale(1.05);
+  box-shadow:0 10px 24px rgba(0,0,0,.35);
+}
+
+.music-btn:active{
+  transform:translateX(-50%) scale(0.98);
+}
+
+/* Flor */
+.flower{
+  position:absolute;
+  bottom:120px;
+  animation:sway 3s ease-in-out infinite;
+  z-index:4;
+}
+
+@keyframes sway{
+  0%,100%{transform:rotate(-2deg)}
+  50%{transform:rotate(2deg)}
+}
+
+.stem{
+  width:6px;
+  height:180px;
+  background:linear-gradient(#2ecc71,#1e8449);
+  margin:auto;
+  position:relative;
+}
+
+.petal{
+  position:absolute;
+  width:60px;
+  height:90px;
+  background:radial-gradient(circle at 30% 30%, #ff9bd3,#ff2e93);
+  border-radius:50%;
+  top:-60px;
+  left:-27px;
+  transform-origin:bottom center;
+  animation:bloom 3s ease-in-out infinite alternate;
+}
+
+.petal:nth-child(1){--r:0deg;transform:rotate(0deg)}
+.petal:nth-child(2){--r:45deg;transform:rotate(45deg)}
+.petal:nth-child(3){--r:90deg;transform:rotate(90deg)}
+.petal:nth-child(4){--r:135deg;transform:rotate(135deg)}
+.petal:nth-child(5){--r:180deg;transform:rotate(180deg)}
+.petal:nth-child(6){--r:225deg;transform:rotate(225deg)}
+.petal:nth-child(7){--r:270deg;transform:rotate(270deg)}
+.petal:nth-child(8){--r:315deg;transform:rotate(315deg)}
+
+@keyframes bloom{
+  from{transform:scale(.9) rotate(var(--r))}
+  to{transform:scale(1.05) rotate(var(--r))}
+}
+
+.center{
+  position:absolute;
+  width:40px;
+  height:40px;
+  background:radial-gradient(#ffe066,#ffb703);
+  border-radius:50%;
+  top:-25px;
+  left:-17px;
+  box-shadow:0 0 20px rgba(255,200,0,.8);
+  animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+  from{box-shadow:0 0 10px rgba(255,200,0,.5)}
+  to{box-shadow:0 0 30px rgba(255,200,0,1)}
+}
+
+/* Hojas */
+.leaf{
+  position:absolute;
+  width:60px;
+  height:30px;
+  background:linear-gradient(#2ecc71,#27ae60);
+  border-radius:60px 0;
+  top:60px;
+}
+
+.leaf.left{
+  left:-60px;
+  transform:rotate(-30deg);
+}
+
+.leaf.right{
+  right:-60px;
+  transform:scaleX(-1) rotate(-30deg);
+}
+</style>
+</head>
+<body>
+
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
+<div class="cloud c3"></div>
+
+<div class="message">
+  Como estas? espero que bien :) ✨
+  <div class="sub">
+    Espero que esto te saque una hermosa sonrrisa, y pases feliz resto del dia mi niña
+  </div>
+</div>
+
+<button id="playBtn" class="music-btn">🎵 Reproducir canción</button>
+
+<audio id="miAudio">
+  <source src="febrero.mp3" type="audio/mp3">
+  Tu navegador no soporta audio.
+</audio>
+
+<div class="flower">
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="center"></div>
+  <div class="stem"></div>
+  <div class="leaf left"></div>
+  <div class="leaf right"></div>
+</div>
+
+<div class="ground"></div>
+
+<script>
+const btn = document.getElementById("playBtn");
+const audio = document.getElementById("miAudio");
+
+btn.addEventListener("click", () => {
+  if (audio.paused) {
+    audio.play();
+    btn.textContent = "⏸ Pausar canción";
+  } else {
+    audio.pause();
+    btn.textContent = "🎵 Reproducir canción";
+  }
+});
+
+audio.addEventListener("ended", () => {
+  btn.textContent = "🎵 Reproducir canción";
+});
+</script>
+
+</body>
+</html>
